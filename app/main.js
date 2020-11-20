@@ -1,9 +1,13 @@
 const Discord = require('discord.js');
+const Database = require('pg');
+
 const client = new Discord.Client();
+const db = new Database.Client();
 
 const prefix = 'gjbot ';
 
 const fs = require('fs');
+const { exit } = require('process');
 fs.readFile('data/token', (err, data) => {
     if (err) {
         return console.error(err);
@@ -21,7 +25,20 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    client.users.fetch('469515141239668786').then( user => {
+    client.users.fetch('469515141239668786')
+    .then( user => {
+        db.connect()
+        .then( () => {
+            db.query('SELECT * FROM inscrits').then( result => {
+                result.rows.forEach(element => {
+                    console.log(element.discord);
+                });
+                db.end();
+            });
+        } , err => {
+            console.error('Failed to connect to database\n', err);
+            exit();
+        });
         user.send('Estoy listo!');
     });
 });

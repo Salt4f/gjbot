@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 const fs = require('fs');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-let list = '`help`:      Shows [www.google.com](this)\n';
+let list = '`help`:      Shows this\n';
 for (const file of commandFiles) {
 	if (file !== 'help.js') {
 		const command = require(`./${file}`);
