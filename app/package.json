@@ -4,7 +4,7 @@
   "description": "Game Jam Online Bot",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node main.js"
   },
   "author": "Salt4f",
   "license": "ISC",
