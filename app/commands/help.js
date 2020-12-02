@@ -13,7 +13,7 @@ const attachment = new Discord.MessageAttachment('./resources/gjb.png', 'gjb.png
 
 module.exports = {
 	name: 'help',
-	description: 'Shows this',
+	description: 'Enseña este mensaje',
 	usage: 'help',
 	execute(msg, args) {
 

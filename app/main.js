@@ -27,7 +27,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.users.fetch('469515141239668786')
     .then( user => {
-        db.connect()
+        /*db.connect()
         .then( () => {
             db.query('SELECT * FROM inscrits').then( result => {
                 result.rows.forEach(element => {
@@ -38,7 +38,7 @@ client.on('ready', () => {
         } , err => {
             console.error('Failed to connect to database\n', err);
             exit();
-        });
+        });*/
         user.send('Estoy listo!');
     });
 });

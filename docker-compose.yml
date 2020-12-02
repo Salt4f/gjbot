@@ -11,9 +11,11 @@ services:
       - "PGPORT=5432"
     volumes: 
       - ./app:/usr/src/app
+    #depends_on: 
+    #  - "pg"
   pg:
     image: "postgres:12"
-    container_name: "postgres"
+    container_name: "pg"
     environment:
       - "POSTGRES_PASSWORD=root_password"
       - "POSTGRES_USER=root"
