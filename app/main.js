@@ -12,7 +12,10 @@ fs.readFile('data/token', (err, data) => {
     if (err) {
         return console.error(err);
     }
-    client.login(data.toString());
+    client.login(data.toString()).catch(() => {
+        console.error('Could not login!');
+        exit(1);
+    });
 });
 
 client.commands = new Discord.Collection();
@@ -27,18 +30,6 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.users.fetch('469515141239668786')
     .then( user => {
-        /*db.connect()
-        .then( () => {
-            db.query('SELECT * FROM inscrits').then( result => {
-                result.rows.forEach(element => {
-                    console.log(element.discord);
-                });
-                db.end();
-            });
-        } , err => {
-            console.error('Failed to connect to database\n', err);
-            exit();
-        });*/
         user.send('Estoy listo!');
     });
 });

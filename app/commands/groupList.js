@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 const Database = require("pg");
 
 module.exports = {
-	name: 'register',
-	description: 'Te registra como participante',
-	usage: 'register (email)',
+	name: 'group list',
+	description: 'Muestra los grupos creados',
+	usage: 'group list',
     /**
      * 
      * @param {Discord.Message} msg 
@@ -13,7 +13,7 @@ module.exports = {
     execute(msg , args) {
 
         if (args.length == 0) {
-            msg.channel.send(`Introduce un correo por favor\nEscribe \`\`\`gjbot ${this.usage}\`\`\``);
+            msg.channel.send(`Introduce un correo por favor\nEscribe \`\`\`gjbot ${usage}\`\`\``);
         }
         
         var pool = new Database.Pool();
