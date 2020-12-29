@@ -3,7 +3,7 @@ const Database = require("pg");
 
 module.exports = {
 	name: 'group create',
-	description: 'Crea un nuevo grupo de nombre group_name',
+	description: 'Crea un nuevo grupo de nombre group_name (¡sin espacios!)',
 	usage: 'group create (group_name)',
     /**
      * 
@@ -12,19 +12,21 @@ module.exports = {
      */
     execute(msg , args) {
 
-        if (args.length == 0) {
-            msg.channel.send(`Introduce un nombre de grupo por favor\nEscribe \`\`\`gjbot ${usage}\`\`\``);
+        if (args.length < 2) {
+
+            msg.channel.send(`Introduce un nombre de grupo por favor\n\`\`\`gjbot ${this.usage}\`\`\``);
+            return;
         }
         
         var pool = new Database.Pool();
         var user = msg.author;
-        pool.query("INSERT INTO participants values ($1::text, $2::text, $3::text);", [args[0], user.id, user.tag])
+        pool.query("INSERT INTO grups values ($1::text);", [args[1]])
         .then(result => {
-            msg.channel.send(`¡Gracias ${user.username} por registrarte!`);
+            msg.channel.send(`¡Grupo ${args[1]} creado!`);
         })
         .catch(err => {
-            if (err.code == '23503') msg.channel.send("¡No estabas registrado previamente!");
-            else if (err.code == '23505') msg.channel.send("¡Ya estás registrado!");
+            if (err.code == '23505') msg.channel.send("Lo siento, ya existe un grupo con ese nombre");
+            else console.error(err);
         });
 
 	},

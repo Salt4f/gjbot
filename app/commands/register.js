@@ -14,6 +14,7 @@ module.exports = {
 
         if (args.length == 0) {
             msg.channel.send(`Introduce un correo por favor\nEscribe \`\`\`gjbot ${this.usage}\`\`\``);
+            return;
         }
         
         var pool = new Database.Pool();
@@ -25,6 +26,7 @@ module.exports = {
         .catch(err => {
             if (err.code == '23503') msg.channel.send("¡No estabas registrado previamente!");
             else if (err.code == '23505') msg.channel.send("¡Ya estás registrado!");
+            else console.error(err);
         });
 
 	},
