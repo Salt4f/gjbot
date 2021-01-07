@@ -25,5 +25,7 @@ CREATE TABLE participants (
 
 
 INSERT INTO inscrits VALUES('example@mail.com', 'pepito');
+INSERT INTO inscrits VALUES('example@mail.es', 'pepito');
 INSERT INTO tickets VALUES('1234');
+INSERT INTO tickets VALUES('4321');
 --INSERT INTO participants VALUES('Pepito#0000');
