@@ -8,9 +8,10 @@ module.exports = {
     /**
      * 
      * @param {Discord.Message} msg 
-     * @param {string[]} args 
+     * @param {string[]} args
+     * @param {Discord.client} client
      */
-    execute(msg , args) {
+    execute(msg, args, client) {
 
         if (args.length == 0) {
             msg.channel.send(`Introduce un correo por favor\nEscribe \`\`\`gjbot ${usage}\`\`\``);

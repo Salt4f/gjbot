@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Database = require('pg');
 
 const client = new Discord.Client();
-const db = new Database.Client();
+//const db = new Database.Client();
 
 const prefix = 'gjbot ';
 
@@ -22,8 +22,10 @@ client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
+    if (file != 'help.js') {
+        const command = require(`./commands/${file}`);
+        client.commands.set(command.name, command);
+    }
 }
 
 client.on('ready', () => {
@@ -46,10 +48,21 @@ client.on('message', async msg => {
     const command = client.commands.get(commandName);
 
     try {
-        command.execute(msg, args);
+        command.execute(msg, args, client);
     }
     catch (error) {
         console.error(error);
     }
+
+});
+
+client.on('guildMemberAdd', async userM => {
+
+    if (userM.guild.id != '780469092456726538') return;
+
+    userM.createDM().then(channel => {
+        channel.send(`¡Hola ${userM.user.username}! Gracias por unirte al servidor. Para poder acceder al servidor introduce el siguiente comando: \`\`\`gjbot register (email) (ticket_id)\`\`\`
+        \ndonde _email_ es el correo que usaste para registrarte en la página de la Global Game Jam y *ticket_id* es el código del ticket de eventbrite.`)
+    });
 
 });

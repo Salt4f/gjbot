@@ -10,9 +10,10 @@ module.exports = {
     /**
      * 
      * @param {Discord.Message} msg 
-     * @param {string[]} args 
+     * @param {string[]} args
+     * @param {Discord.Client} client
      */
-    execute(msg , args) {
+    execute(msg , args, client) {
 
         if (args.length < 1) {
             msg.channel.send("Comando demasiado corto");

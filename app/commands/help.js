@@ -15,7 +15,7 @@ module.exports = {
 	name: 'help',
 	description: 'Enseña este mensaje',
 	usage: 'help',
-	execute(msg, args) {
+	execute(msg, args, client) {
 
 		const embed = new Discord.MessageEmbed()
 		.setTitle('GameJamBarcelona Online Bot')
