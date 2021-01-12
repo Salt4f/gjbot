@@ -19,11 +19,20 @@ module.exports = {
             return;
         }
         
+        console.log(`${msg.author.id} (${msg.author.tag}) intenta ejecutar gjbot group create`);
+
         var pool = new Database.Pool();
-        var user = msg.author;
         pool.query("INSERT INTO grups values ($1::text);", [args[1]])
         .then(result => {
             msg.channel.send(`¡Grupo ${args[1]} creado!`);
+            console.log(`Grupo ${args[1]} creado`);
+            pool.query("UPDATE participants SET grup = $1::text WHERE discord_id = $2::text", [args[1], msg.author.id])
+            .then(() => {
+                console.log(`${msg.author.id} (${msg.author.tag}) se une al grupo ${args[1]}`);
+                msg.channel.send(`¡Unido al grupo ${args[1]}!`);
+            }).catch(err => {
+                console.error(err);
+            });
         })
         .catch(err => {
             if (err.code == '23505') msg.channel.send("Lo siento, ya existe un grupo con ese nombre");

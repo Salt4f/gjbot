@@ -18,38 +18,35 @@ module.exports = {
             return;
         }
 
-        var isMember = true;
-
         client.guilds.fetch('780469092456726538').then( (guild) => {
-            guild.members.fetch(msg.author).then(null, () => {
-                isMember = false;
-            })
-        });
-
-        if (!isMember) return;
-
-        console.log(`${msg.author.id} (${msg.author.tag}) intenta ejecutar gjbot register`);
+            guild.members.fetch(msg.author).then(() => {
+                console.log(`${msg.author.id} (${msg.author.tag}) intenta ejecutar gjbot register`);
         
-        var pool = new Database.Pool();
-        var user = msg.author;
-        pool.query("INSERT INTO participants values ($1::text, $2::text, $3::text, $4::text);", [args[0], user.id, user.tag, args[1]])
-        .then(result => {
-            client.guilds.fetch('780469092456726538').then( (guild) => {
-                guild.members.fetch(msg.author).then((guildUser) => {
-                    guild.roles.fetch('796321102418804806').then( (role) => {
-                        guildUser.roles.add(role);
-                        msg.channel.send(`¡Gracias ${user.username} por registrarte!`);
-                        console.log(`Dado el rol de jammer a ${user.id} (${user.tag})`);
+                var pool = new Database.Pool();
+                var user = msg.author;
+                pool.query("INSERT INTO participants values ($1::text, $2::text, $3::text, $4::text);", [args[0], user.id, user.tag, args[1]])
+                .then(result => {
+                    client.guilds.fetch('780469092456726538').then( (guild) => {
+                        guild.members.fetch(msg.author).then((guildUser) => {
+                            guild.roles.fetch('796321102418804806').then( (role) => {
+                                guildUser.roles.add(role);
+                                msg.channel.send(`¡Gracias ${user.username} por registrarte!`);
+                                console.log(`${user.id} (${user.tag}) tiene el rol de jammer ahora`);
+                            });
+                        });
                     });
+                    
+                })
+                .catch(err => {
+                    if (err.code == '23503') msg.reply("¡No estabas registrado previamente!");
+                    else if (err.code == '23505') msg.reply("¡Ya estás registrado!");
+                    else console.error(err);
                 });
+
             });
-            
-        })
-        .catch(err => {
-            if (err.code == '23503') msg.channel.send("¡No estabas registrado previamente!");
-            else if (err.code == '23505') msg.channel.send("¡Ya estás registrado!");
-            else console.error(err);
         });
+
+        
 
 	},
 };

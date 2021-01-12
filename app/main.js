@@ -56,7 +56,7 @@ client.on('message', async msg => {
 
 });
 
-client.on('guildMemberAdd', async userM => {
+/*client.on('guildMemberAdd', async userM => {
 
     if (userM.guild.id != '780469092456726538') return;
 
@@ -65,4 +65,4 @@ client.on('guildMemberAdd', async userM => {
         \ndonde _email_ es el correo que usaste para registrarte en la página de la Global Game Jam y *ticket_id* es el código del ticket de eventbrite.`)
     });
 
-});
+});*/

@@ -13,19 +13,23 @@ module.exports = {
      */
     execute(msg, args, client) {
 
-        if (args.length == 0) {
-            msg.channel.send(`Introduce un correo por favor\nEscribe \`\`\`gjbot ${usage}\`\`\``);
+        if (args.length < 2) {
+
+            msg.channel.send(`Introduce un nombre de grupo por favor\n\`\`\`gjbot ${this.usage}\`\`\``);
+            return;
         }
+
+        console.log(`${msg.author.id} (${msg.author.tag}) intenta ejecutar gjbot group join`);
         
         var pool = new Database.Pool();
-        var user = msg.author;
-        pool.query("INSERT INTO participants values ($1::text, $2::text, $3::text);", [args[0], user.id, user.tag])
+
+        pool.query("UPDATE participants SET grup = $1::text WHERE discord_id = $2::text", [args[1], msg.author.id])
         .then(result => {
-            msg.channel.send(`¡Gracias ${user.username} por registrarte!`);
-        })
-        .catch(err => {
-            if (err.code == '23503') msg.channel.send("¡No estabas registrado previamente!");
-            else if (err.code == '23505') msg.channel.send("¡Ya estás registrado!");
+            console.log(`${msg.author.id} (${msg.author.tag}) se une al grupo ${args[1]}`);
+            msg.reply(`¡Unido al grupo ${args[1]}!`);
+        }).catch(err => {
+            if (err.code == '23503') msg.reply(`El grupo ${args[1]} no existe`)
+            else console.error(err);
         });
 
 	},

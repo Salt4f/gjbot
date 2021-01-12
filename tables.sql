@@ -8,7 +8,8 @@ CREATE TABLE tickets (
 );
 
 CREATE TABLE grups (
-    grup_name   text PRIMARY KEY
+    grup_name   text PRIMARY KEY,
+    project_url text DEFAULT NULL
 );
 
 CREATE TABLE participants (
@@ -24,8 +25,9 @@ CREATE TABLE participants (
 );
 
 
-INSERT INTO inscrits VALUES('example@mail.com', 'pepito');
-INSERT INTO inscrits VALUES('example@mail.es', 'pepito');
-INSERT INTO tickets VALUES('1234');
-INSERT INTO tickets VALUES('4321');
---INSERT INTO participants VALUES('Pepito#0000');
+--INSERT INTO inscrits VALUES('example@mail.com', 'pepito');
+--INSERT INTO inscrits VALUES('example@mail.es', 'pepito');
+--INSERT INTO inscrits VALUES('example@mail.cat', 'pepito');
+--INSERT INTO tickets VALUES('1234');
+--INSERT INTO tickets VALUES('4321');
+--INSERT INTO tickets VALUES('1221');

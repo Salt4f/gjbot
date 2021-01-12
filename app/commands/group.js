@@ -1,4 +1,4 @@
-//const Discord = require("discord.js");
+const Discord = require("discord.js");
 const create = require("./groupCreate.js");
 const join = require("./groupJoin.js");
 const list = require("./groupList.js");
@@ -19,20 +19,30 @@ module.exports = {
             msg.channel.send("Comando demasiado corto");
             return;
         }
-        
-        switch (args[0]) {
-            case 'create':
-                create.execute(msg, args);
-                break;
-            case 'join':
-                join.execute(msg, args);
-                break;
-            case 'list':
-                list.execute(msg, args);
-                break;
-            default:
-                break;
-        }
+
+        client.guilds.fetch('780469092456726538', false, true).then( (guild) => {
+            guild.members.fetch(msg.author)
+            .then(member => {
+                if (member.roles.cache.get('796321102418804806') != null) {
+                    switch (args[0]) {
+                        case 'create':
+                            create.execute(msg, args, client);
+                            break;
+                        case 'join':
+                            join.execute(msg, args, client);
+                            break;
+                        case 'list':
+                            list.execute(msg, args, client);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            })
+            .catch(err => {
+                return;
+            })
+        });
 
 	},
 };

@@ -13,19 +13,29 @@ module.exports = {
      */
     execute(msg, args, client) {
 
-        if (args.length == 0) {
-            msg.channel.send(`Introduce un correo por favor\nEscribe \`\`\`gjbot ${usage}\`\`\``);
-        }
+        console.log(`${msg.author.id} (${msg.author.tag}) intenta ejecutar gjbot group list`);
         
         var pool = new Database.Pool();
-        var user = msg.author;
-        pool.query("INSERT INTO participants values ($1::text, $2::text, $3::text);", [args[0], user.id, user.tag])
+        pool.query("SELECT g.grup_name as name, p.discord_tag as tag FROM grups g, participants p WHERE g.grup_name = p.grup ORDER BY g.grup_name, p.discord_tag;")
         .then(result => {
-            msg.channel.send(`¡Gracias ${user.username} por registrarte!`);
+            var list = ', ';
+            var lastGroup = null;
+            result.rows.forEach( (row) => {
+                if (row.name != lastGroup) {
+                    list = list.slice(0, list.length - 2); 
+                    list += '\n' + row.name + ' - ';
+                    lastGroup = row.name;
+                }
+                list += row.tag + ', ';
+            })
+            list = list.slice(0, list.length - 2);
+            msg.channel.send(list);
+            //msg.channel.send(`¡Gracias ${user.username} por registrarte!`);
         })
         .catch(err => {
-            if (err.code == '23503') msg.channel.send("¡No estabas registrado previamente!");
-            else if (err.code == '23505') msg.channel.send("¡Ya estás registrado!");
+            //if (err.code == '23503') msg.channel.send("¡No estabas registrado previamente!");
+            //else if (err.code == '23505') msg.channel.send("¡Ya estás registrado!");
+            console.error(err);
         });
 
 	},
