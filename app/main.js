@@ -58,7 +58,7 @@ client.on('message', async msg => {
 
 /*client.on('guildMemberAdd', async userM => {
 
-    if (userM.guild.id != '780469092456726538') return;
+    /*if (userM.guild.id != '780469092456726538') return;
 
     userM.createDM().then(channel => {
         channel.send(`¡Hola ${userM.user.username}! Gracias por unirte al servidor. Para poder acceder al servidor introduce el siguiente comando: \`\`\`gjbot register (email) (ticket_id)\`\`\`
