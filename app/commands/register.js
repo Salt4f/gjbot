@@ -13,9 +13,23 @@ module.exports = {
      */
     execute(msg, args, client) {
         
+
         if (args.length < 2) {
             msg.channel.send("Introdueix l'email amb el que estas registrat a la nostra location de la GGJ i el numero de la comanda del teu tiquet d'Eventbrite\n---\n"
                 +"Introduce el email con el que estas registrado en nuestra location de la GGJ y el numero de pedido de tu tiquet de Eventbrite\nUsage: ```gjbot ${this.usage}```");
+            return;
+        }
+
+        // super simple front-end email check, només really useful per a notificar l'user de que han comes probablement un typo
+        if (!/\S+@\S+\.\S+/.test(args[0]))
+        {
+            msg.channel.send("L'email no sembla vàlid.. si us plau, revisa'l!\n---\nEl email no parece válido.. por favor, revisalo!");
+            return;
+        }
+        // el nr de pedido de eventbrite ha de ser només numeros, aprox 10 characters
+        if (!/^\d+$/.test(args[1]))
+        {
+            msg.channel.send("El número de comanda ha de consistir només de números.. si us plau, revisa'l!\n---\nEl número de pedido debe consistir solo de números.. por favor, revisalo!\nEx: ```1234567890```");
             return;
         }
 
