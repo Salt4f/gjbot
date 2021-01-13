@@ -3,8 +3,8 @@ const Database = require("pg");
 
 module.exports = {
 	name: 'register',
-	description: 'Te registra como participante',
-	usage: 'register (email) (ticket_id)',
+	description: 'Et registra com a participant --- Te registra como participante',
+	usage: 'register (email_ggj_site) (order_nr_eventbrite)',
     /**
      * 
      * @param {Discord.Message} msg 
@@ -14,7 +14,8 @@ module.exports = {
     execute(msg, args, client) {
         
         if (args.length < 2) {
-            msg.channel.send(`Introduce un correo y el identificador del ticket por favor\nEscribe \`\`\`gjbot ${this.usage}\`\`\``);
+            msg.channel.send("Introdueix l'email amb el que estas registrat a la nostra location de la GGJ i el numero de la comanda del teu tiquet d'Eventbrite\n---\n"
+                +"Introduce el email con el que estas registrado en nuestra location de la GGJ y el numero de pedido de tu tiquet de Eventbrite\nUsage: ```gjbot ${this.usage}```");
             return;
         }
 
@@ -30,7 +31,7 @@ module.exports = {
                         guild.members.fetch(msg.author).then((guildUser) => {
                             guild.roles.fetch('796321102418804806').then( (role) => {
                                 guildUser.roles.add(role);
-                                msg.channel.send(`¡Gracias ${user.username} por registrarte!`);
+                                msg.channel.send(`Gràcies ${user.username}! El registre s'ha completat correctament.\n---\n¡Gracias ${user.username}! El registro se ha completado correctamente.`);
                                 console.log(`${user.id} (${user.tag}) tiene el rol de jammer ahora`);
                             });
                         });
@@ -38,8 +39,8 @@ module.exports = {
                     
                 })
                 .catch(err => {
-                    if (err.code == '23503') msg.reply("¡No estabas registrado previamente!");
-                    else if (err.code == '23505') msg.reply("¡Ya estás registrado!");
+                    if (err.code == '23503') msg.reply("No estaves registrat previament!\n---\n¡No estabas registrado previamente!");
+                    else if (err.code == '23505') msg.reply("Ja estas registrat!\n---\n¡Ya estás registrado!");
                     else console.error(err);
                 });
 
