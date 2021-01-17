@@ -3,7 +3,7 @@ const Database = require("pg");
 
 module.exports = {
 	name: 'group create',
-	description: 'Crea un new grup amb nom *group_name* (Sense espais!) --- Crea un nuevo grupo de nombre *group_name* (¡sin espacios!)',
+	description: 'Crea un nou grup amb nom *group_name* (Sense espais!) --- Crea un nuevo grupo de nombre *group_name* (¡sin espacios!)',
 	usage: 'group create (group_name)',
     /**
      * 
@@ -20,7 +20,7 @@ module.exports = {
         }
         else if (args.length > 2)
         {
-            msg.channel.send(`El nom de grup no pot contenir espais\n---\nEl nombre de grupo no puede tener espacios!\n\`\`\`gjbot ${this.usage}\`\`\``);
+            msg.channel.send(`El nom de grup no pot contenir espais\n---\n¡El nombre de grupo no puede tener espacios!\n\`\`\`gjbot ${this.usage}\`\`\``);
             return;
         }
         
