@@ -1,6 +1,5 @@
 CREATE TABLE inscrits (
-    email       text PRIMARY KEY,
-    username    text NOT NULL CHECK (username <> '')
+    email       text PRIMARY KEY
 );
 
 CREATE TABLE tickets (

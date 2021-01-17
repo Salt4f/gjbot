@@ -17,17 +17,31 @@ module.exports = {
             guild.members.fetch(msg.author)
             .then(member => {
                 if (member.roles.cache.get('780474551280205868') != null) {
+
+                    if (args.length < 2) {
+                        msg.reply(`Elige una opción y pon su valor\n\`\`\`gjbot ${this.usage}\`\`\``);
+                        return;
+                    }
+
                     switch (args[0]) {
-                        case 'create':
-                            create.execute(msg, args, client);
+                        case 'email':
+                            var pool = new Database.Pool();
+                            pool.query("INSERT INTO inscrits values ($1::text);", [args[1]]).then(() => {
+                                msg.reply(`Se ha registrado el email ${args[1]}`);
+                            }).catch(err => {
+                                msg.reply(`Ya está registrado el email ${args[1]}`);
+                            })
                             break;
-                        case 'join':
-                            join.execute(msg, args, client);
-                            break;
-                        case 'list':
-                            list.execute(msg, args, client);
+                        case 'ticket':
+                            var pool = new Database.Pool();
+                            pool.query("INSERT INTO tickets values ($1::text);", [args[1]]).then(() => {
+                                msg.reply(`Se ha registrado el ticket ${args[1]}`);
+                            }).catch(err => {
+                                msg.reply(`Ya está registrado el ticket ${args[1]}`);
+                            })
                             break;
                         default:
+                            msg.reply(`Elige una opción válida y pon su valor\n\`\`\`gjbot ${this.usage}\`\`\``);
                             break;
                     }
                 }
@@ -37,11 +51,7 @@ module.exports = {
             })
         });
 
-        if (args.length < 2) {
-
-            msg.channel.send(`Introduce un nombre de grupo por favor\n\`\`\`gjbot ${this.usage}\`\`\``);
-            return;
-        }
+        
 
         console.log(`${msg.author.id} (${msg.author.tag}) intenta ejecutar gjbot group join`);
         
