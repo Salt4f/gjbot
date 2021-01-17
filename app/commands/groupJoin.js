@@ -3,7 +3,7 @@ const Database = require("pg");
 
 module.exports = {
 	name: 'group join',
-	description: 'Te une al grupo especificado',
+	description: "T'afegeix al grup especificat --- Te une al grupo especificado",
 	usage: 'group join (group_name)',
     /**
      * 
@@ -14,8 +14,7 @@ module.exports = {
     execute(msg, args, client) {
 
         if (args.length < 2) {
-
-            msg.channel.send(`Introduce un nombre de grupo por favor\n\`\`\`gjbot ${this.usage}\`\`\``);
+            msg.channel.send(`Introdueix un nom de grupo per favor\n---\nIntroduce un nombre de grupo por favor\n\`\`\`gjbot ${this.usage}\`\`\``);
             return;
         }
 
@@ -26,9 +25,9 @@ module.exports = {
         pool.query("UPDATE participants SET grup = $1::text WHERE discord_id = $2::text", [args[1], msg.author.id])
         .then(result => {
             console.log(`${msg.author.id} (${msg.author.tag}) se une al grupo ${args[1]}`);
-            msg.reply(`¡Unido al grupo ${args[1]}!`);
+            msg.channel.send(`T'has unit al grup ${args[1]}\n---\n¡Te has unido al grupo ${args[1]}!`);
         }).catch(err => {
-            if (err.code == '23503') msg.reply(`El grupo ${args[1]} no existe`)
+            if (err.code == '23503') msg.reply(`El grup ${args[1]} no existeix\n---\n El grupo ${args[1]} no existe`)
             else console.error(err);
         });
 
