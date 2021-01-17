@@ -14,7 +14,7 @@ module.exports = {
     execute(msg, args, client) {
 
         if (args.length < 2) {
-            msg.channel.send(`Introdueix un nom de grupo per favor\n---\nIntroduce un nombre de grupo por favor\n\`\`\`gjbot ${this.usage}\`\`\``);
+            msg.channel.send(`Introdueix un nom de grupo si us plau\n---\nIntroduce un nombre de grupo por favor\n\`\`\`gjbot ${this.usage}\`\`\``);
             return;
         }
 
