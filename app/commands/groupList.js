@@ -3,7 +3,7 @@ const Database = require("pg");
 
 module.exports = {
 	name: 'group list',
-	description: 'Muestra los grupos creados y sus miembros',
+	description: 'Mostra els grups creats i els seus membres --- Muestra los grupos creados y sus miembros',
 	usage: 'group list',
     /**
      * 
