@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 
 const fs = require('fs');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-let list = '`help`:      Enseña esto\n';
+let list = '';
 for (const file of commandFiles) {
-	if (file !== 'help.js' || file !== 'add.js') {
+	if (file !== 'help.js' && file !== 'group.js' && file !== 'group.js') {
 		const command = require(`./${file}`);
 		list += `${'`'}${command.usage}${'`'}:      ${command.description}\n`;
 	}

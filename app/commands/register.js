@@ -16,7 +16,7 @@ module.exports = {
 
         if (args.length < 2) {
             msg.channel.send("Introdueix l'email amb el que estàs registrat a la nostra location de la GGJ i el numero de la comanda del teu tiquet d'Eventbrite\n---\n"
-                +"Introduce el email con el que estás registrado en nuestra location de la GGJ y el número de pedido de tu tique de Eventbrite\nUsage: ```gjbot ${this.usage}```");
+                +`Introduce el email con el que estás registrado en nuestra location de la GGJ y el número de pedido de tu tique de Eventbrite\nUsage: \`\`\`gjbot ${this.usage}\`\`\``);
             return;
         }
 
