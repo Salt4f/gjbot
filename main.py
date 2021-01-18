@@ -11,8 +11,8 @@ if __name__ == "__main__":
             if line_count == 0:
                 line_count +=1
             else:
-                toWrite += "INSERT INTO inscrits VALUES (\""
-                toWrite += row[3] + "\");\n"
+                toWrite += "INSERT INTO inscrits VALUES (\'"
+                toWrite += row[3] + "\');\n"
 
         f = open("inserts.sql", "w")
         f.write(toWrite)
