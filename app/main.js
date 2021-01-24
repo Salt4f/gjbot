@@ -28,6 +28,15 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
+
+    client.channels.fetch('780480286286020618')
+    .then(channel => {
+        channel.messages.fetch('messageID', true);
+        channel.messages.fetch('messageID', true);
+        channel.messages.fetch('messageID', true);        
+    })
+
+
     client.users.fetch('469515141239668786')
     .then( user => {
         user.send('Estoy listo!');
@@ -51,6 +60,33 @@ client.on('message', async msg => {
     catch (error) {
         console.error(error);
     }
+
+});
+
+client.on('messageReactionAdd', async (msg, author) => {
+
+    if (msg.message.channel != '780480286286020618' || author.bot) return; //Canal anuncis
+
+    client.guilds.fetch('780469092456726538')
+    .then(guild => {
+        switch (msg.message.id) {
+            case 'messageID':
+                guild.roles.fetch('roleID')
+                .then(role => {
+                    guild.member(author).roles.add(role);
+                })
+                .catch(e => {
+                    console.error(e)
+                })
+                break;
+            default:
+                break;
+        }
+        
+    })
+    .catch(e => {
+        console.error(e)
+    })
 
 });
 
