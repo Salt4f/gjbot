@@ -31,9 +31,13 @@ client.on('ready', () => {
 
     client.channels.fetch('780480286286020618')
     .then(channel => {
-        channel.messages.fetch('messageID', true);
-        channel.messages.fetch('messageID', true);
-        channel.messages.fetch('messageID', true);        
+        channel.messages.fetch('802935389593403413', true); //PROGRAMMING
+        channel.messages.fetch('802935440675569674', true); //GAME DESIGN
+        channel.messages.fetch('802935480882167838', true); //MUSIC
+        channel.messages.fetch('802935528495644692', true); //SOUND EFFECTS
+        channel.messages.fetch('802935559378042921', true); //3D ART
+        channel.messages.fetch('802935596511002674', true); //2D ART
+        channel.messages.fetch('802935638012723240', true); //USER INTERFACE DESIGN      
     })
 
 
@@ -70,8 +74,62 @@ client.on('messageReactionAdd', async (msg, author) => {
     client.guilds.fetch('780469092456726538')
     .then(guild => {
         switch (msg.message.id) {
-            case 'messageID':
-                guild.roles.fetch('roleID')
+            case '802935389593403413': //PROGRAMMING
+                guild.roles.fetch('802885024390184980')
+                .then(role => {
+                    guild.member(author).roles.add(role);
+                })
+                .catch(e => {
+                    console.error(e)
+                })
+                break;
+            case '802935440675569674': //GAME DESIGN
+                guild.roles.fetch('802885293727416320')
+                .then(role => {
+                    guild.member(author).roles.add(role);
+                })
+                .catch(e => {
+                    console.error(e)
+                })
+                break;
+            case '802935480882167838': //MUSIC
+                guild.roles.fetch('802885234986188830')
+                .then(role => {
+                    guild.member(author).roles.add(role);
+                })
+                .catch(e => {
+                    console.error(e)
+                })
+                break;
+            case '802935528495644692': //SOUND EFFECTS
+                guild.roles.fetch('802885276611379220')
+                .then(role => {
+                    guild.member(author).roles.add(role);
+                })
+                .catch(e => {
+                    console.error(e)
+                })
+                break;
+            case '802935559378042921': //3D ART
+                guild.roles.fetch('802885199649832960')
+                .then(role => {
+                    guild.member(author).roles.add(role);
+                })
+                .catch(e => {
+                    console.error(e)
+                })
+                break;
+            case '802935596511002674': //2D ART
+                guild.roles.fetch('802885153005109299')
+                .then(role => {
+                    guild.member(author).roles.add(role);
+                })
+                .catch(e => {
+                    console.error(e)
+                })
+                break;
+            case '802935638012723240': //USER INTERFACE DESIGN
+                guild.roles.fetch('802885537173078047')
                 .then(role => {
                     guild.member(author).roles.add(role);
                 })

@@ -23,10 +23,12 @@ CREATE TABLE participants (
     FOREIGN KEY(grup) references grups(grup_name)
 );
 
+CREATE TABLE votes (
+    email       text,
+    grup_name   text,
+    punt        integer,
 
---INSERT INTO inscrits VALUES('example@mail.com', 'pepito');
---INSERT INTO inscrits VALUES('example@mail.es', 'pepito');
---INSERT INTO inscrits VALUES('example@mail.cat', 'pepito');
---INSERT INTO tickets VALUES('1234');
---INSERT INTO tickets VALUES('4321');
---INSERT INTO tickets VALUES('1221');
+    PRIMARY KEY(email, grup_name),
+    FOREIGN KEY(email) references participants(email),
+    FOREIGN KEY(grup_name) references grups(grup_name)
+);
