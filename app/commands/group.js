@@ -23,7 +23,9 @@ module.exports = {
         client.guilds.fetch('780469092456726538', false, true).then( (guild) => {
             guild.members.fetch(msg.author)
             .then(member => {
-                if (member.roles.cache.get('796321102418804806') != null) {
+                if (member.roles.cache.get('796321102418804806') != null ||
+                    member.roles.cache.get('780474551280205868') != null ||
+                    member.roles.cache.get('790210998225207296') != null) {
                     switch (args[0]) {
                         case 'create':
                             create.execute(msg, args, client);
