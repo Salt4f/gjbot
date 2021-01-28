@@ -53,7 +53,13 @@ module.exports = {
                     
                 })
                 .catch(err => {
-                    if (err.code == '23503') msg.reply("No estaves registrat previament!\n---\n¡No estabas registrado previamente!");
+                    if (err.code == '23503') msg.reply("No trobo el teu email entre els participants de la GGJ site!"
+                        +"\nPots confirmar que t'has unit a la site i que l'email que m'has donat és el mateix amb el que has fet l'usuari de la GGJ?"
+                        +"\nEn el cas de que t'hagis unit a la site en les últimes 24 hores, potser encara no tinc les dades actualitzades. Si us plau torna-ho a provar demà o contacta amb @Organització!"
+                        +"\n---\n¡No encuentro tu email entre los participantes de la GGJ site!"
+                        +"\nPuedes confirmar que te has unido a la site i que el email que me has dado es el mismo con el que te has hecho el usuario de la GGJ?"
+                        +"\nEn caso de que te hayas unido a la site en las últimas 24 horas, quizás aún no tengo los datos actualizados. Por favor, vuelve a intentarlo mañana o contacta con @Organització!"+
+                        "\n\nLink a la GGJ site: https://globalgamejam.org/2021/jam-sites/game-jam-barcelona-upc-2021");
                     else if (err.code == '23505') msg.reply("Ja estàs registrat!\n---\n¡Ya estás registrado!");
                     else console.error(err);
                 });
