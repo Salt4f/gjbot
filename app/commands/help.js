@@ -4,7 +4,7 @@ const fs = require('fs');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 let list = '';
 for (const file of commandFiles) {
-	if (file !== 'help.js' && file !== 'group.js' && file !== 'add.js') {
+	if (file !== 'help.js' && file !== 'group.js' && file !== 'add.js' && file !== 'alone.js') {
 		const command = require(`./${file}`);
 		list += `${'`'}${command.usage}${'`'}:      ${command.description}\n`;
 	}
