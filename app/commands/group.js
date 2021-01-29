@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const create = require("./groupCreate.js");
 const join = require("./groupJoin.js");
 const list = require("./groupList.js");
+const register = require("./groupRegister.js");
 
 module.exports = {
 	name: 'group',
@@ -35,6 +36,9 @@ module.exports = {
                             break;
                         case 'list':
                             list.execute(msg, args, client);
+                            break;
+                        case 'register':
+                            register.execute(msg, args, client);
                             break;
                         default:
                             break;
