@@ -33,7 +33,7 @@ module.exports = {
 
                 client.channels.fetch('805027666125652009')
                 .then(urlChannel => {
-                    urlChannel.messages.fetch('messageID').then(mess => {
+                    urlChannel.messages.fetch('805054681499303988').then(mess => {
                         pool.query("SELECT g.grup_name as name, g.project_url as url FROM grups g WHERE g.project_url IS NOT NULL ORDER BY g.grup_name;")
                         .then(result => {
                             var list = '';
