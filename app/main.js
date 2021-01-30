@@ -8,6 +8,7 @@ const prefix = 'gjbot ';
 
 const fs = require('fs');
 const { exit } = require('process');
+const { url } = require('inspector');
 fs.readFile('data/token', (err, data) => {
     if (err) {
         return console.error(err);
@@ -40,6 +41,10 @@ client.on('ready', () => {
         channel.messages.fetch('802935638012723240', true); //USER INTERFACE DESIGN      
     })
 
+    client.channels.fetch('805027666125652009')
+    .then(urlChannel => {
+        urlChannel.send('Test');
+    });
 
     client.users.fetch('469515141239668786')
     .then( user => {
