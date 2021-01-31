@@ -24,11 +24,11 @@ CREATE TABLE participants (
 );
 
 CREATE TABLE votes (
-    email       text,
+    discord_id  text,
     grup_name   text,
     punt        integer,
 
-    PRIMARY KEY(email, grup_name),
-    FOREIGN KEY(email) references participants(email),
+    PRIMARY KEY(discord_id, grup_name),
+    FOREIGN KEY(discord_id) references participants(discord_id),
     FOREIGN KEY(grup_name) references grups(grup_name)
 );
