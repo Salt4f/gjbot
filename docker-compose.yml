@@ -9,8 +9,8 @@ services:
       - "PGPASSWORD=root_password"
       - "PGDATABASE=db"
       - "PGPORT=5432"
-    volumes: 
-      - ./app:/usr/src/app
+    #volumes: 
+      #- ./app:/usr/src/app
     depends_on: 
       - "pg"
   pg:
@@ -21,6 +21,6 @@ services:
       - "POSTGRES_USER=root"
       - "POSTGRES_DB=db"
     ports:
-      - "5432:5432"
+      - "5488:5432"
     volumes:
       - ./pg/db_data:/var/lib/postgresql/data
